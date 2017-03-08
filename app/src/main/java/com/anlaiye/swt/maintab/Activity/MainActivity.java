@@ -1,5 +1,6 @@
 package com.anlaiye.swt.maintab.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.anlaiye.swt.maintab.Fragment.TabDuanZiFragment;
 import com.anlaiye.swt.maintab.Fragment.TabFenLeiFragment;
@@ -23,6 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout MainLayout, FriendLayout, FenLeiLayout, DuanZiLayout, StiingLayout;
     private ImageButton MainButton, FriendButton, FenLeiButton, DuanZiButton, SettingButton;
+    private TextView MainTv,FriendTv,FenLeiTv,DuanZiTv,SettingTv;
     private ViewPager mViewPager;
     private List<Fragment> mViews = new ArrayList<>();
     private List<Integer> imglist = new ArrayList<>();
@@ -51,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DuanZiButton = (ImageButton) findViewById(R.id.id_tab_duanzi_img);
         SettingButton = (ImageButton) findViewById(R.id.id_tab_setting_img);
 
+        MainTv= (TextView) findViewById(R.id.tv_zhuye);
+        FriendTv= (TextView) findViewById(R.id.tv_friend);
+        FenLeiTv= (TextView) findViewById(R.id.tv_fenlei);
+        DuanZiTv= (TextView) findViewById(R.id.tv_duanzi);
+        SettingTv= (TextView) findViewById(R.id.tv_center);
+
         MainLayout.setOnClickListener(this);
         FriendLayout.setOnClickListener(this);
         FenLeiLayout.setOnClickListener(this);
@@ -72,22 +81,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onPageSelected(int position) {
                 int currItem = mViewPager.getCurrentItem();
                 reset();
-
+                resetColor();
                 switch (currItem){
                     case 0:
                         MainButton.setImageResource(selectimglist.get(position));
+                        MainTv.setTextColor(Color.parseColor("#ffdc5b"));
                         break;
                     case 1:
                         FriendButton.setImageResource(selectimglist.get(1));
+                        FriendTv.setTextColor(Color.parseColor("#ffdc5b"));
                         break;
                     case 2:
                         FenLeiButton.setImageResource(selectimglist.get(2));
+                        FenLeiTv.setTextColor(Color.parseColor("#ffdc5b"));
                         break;
                     case 3:
                         DuanZiButton.setImageResource(selectimglist.get(3));
+                        DuanZiTv.setTextColor(Color.parseColor("#ffdc5b"));
                         break;
                     case 4:
                         SettingButton.setImageResource(selectimglist.get(4));
+                        SettingTv.setTextColor(Color.parseColor("#ffdc5b"));
                         break;
                 }
 
@@ -98,6 +112,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+
+    private void resetColor() {
+        MainTv.setTextColor(Color.parseColor("#dfdfdfdf"));
+        FriendTv.setTextColor(Color.parseColor("#dfdfdfdf"));
+        FenLeiTv.setTextColor(Color.parseColor("#dfdfdfdf"));
+        DuanZiTv.setTextColor(Color.parseColor("#dfdfdfdf"));
+        SettingTv.setTextColor(Color.parseColor("#dfdfdfdf"));
     }
 
     private void getSelectImg() {
@@ -138,26 +160,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         reset();
+        resetColor();
+
         switch (v.getId()) {
             case R.id.id_tab_zhuye:
                 mViewPager.setCurrentItem(0);
                 MainButton.setImageResource(selectimglist.get(0));
+                MainTv.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             case R.id.id_tab_frd:
                 mViewPager.setCurrentItem(1);
                 FriendButton.setImageResource(selectimglist.get(1));
+                FriendTv.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             case R.id.id_tab_fenlei:
                 mViewPager.setCurrentItem(2);
                 FenLeiButton.setImageResource(selectimglist.get(2));
+                FenLeiTv.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             case R.id.id_tab_duanzi:
                 mViewPager.setCurrentItem(3);
                 DuanZiButton.setImageResource(selectimglist.get(3));
+                DuanZiTv.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             case R.id.id_tab_setting:
                 mViewPager.setCurrentItem(4);
                 SettingButton.setImageResource(selectimglist.get(4));
+                SettingTv.setTextColor(getResources().getColor(R.color.yellow));
                 break;
         }
     }
